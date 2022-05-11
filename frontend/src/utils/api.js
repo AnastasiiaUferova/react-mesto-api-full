@@ -108,8 +108,8 @@ class Api {
 
 
 const api = new Api({
-    address: "https://mesto.nomoreparties.co/v1/cohort-35",
-    token: "122002ae-02b5-4087-9c3a-b65f83b6a7d9",
+    address: "https://mesto-back.u.nomoredomains.xyz ",
+    token: localStorage.getItem("token")
 });
 
 export default api
