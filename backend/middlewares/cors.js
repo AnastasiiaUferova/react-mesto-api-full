@@ -1,14 +1,6 @@
 const allowedCors = [
-    'localhost:3000',
-    'htpps:localhost:3000',
-    'https://mesto-front.u.nomoredomains.xyz/signup',
-    'https://mesto-front.u.nomoredomains.xyz/sigin',
-    'http://mesto-front.u.nomoredomains.xyz/signup',
-    'http://mesto-front.u.nomoredomains.xyz/signin',
-    'http://mesto-back.u.nomoredomains.xyz/signup',
-    'https://mesto-back.u.nomoredomains.xyz/signin',
-    'https://mesto-front.u.nomoredomains.xyz/signup'
-
+    'https://mesto-front.u.nomoredomains.xyz/',
+    'http://mesto-front.u.nomoredomains.xyz/'
 ];
 
 module.exports.cors = (req, res, next) => {
