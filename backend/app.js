@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
+const cors = require('cors')
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -23,6 +24,8 @@ app.use(cookieParser());
 app.use(helmet());
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
+
+app.use(cors())
 
 app.use(requestLogger);
 
