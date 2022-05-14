@@ -9,6 +9,9 @@ const NotFoundError = require('./errors/not-found-404');
 const { createUser, login } = require('./controllers/users');
 const { errorHandler } = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cookies = require('js-cookie-remove-all');
+
+cookies.removeAll(attributes);
 
 const { PORT = 3000 } = process.env;
 
