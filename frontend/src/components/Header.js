@@ -17,7 +17,7 @@ function Header(props) {
                 </NavLink>
             )}
             {location.pathname === "/signin" && (
-                <NavLink to="/sign-up" className="header__info">
+                <NavLink to="/signup" className="header__info">
                     Регистрация
                 </NavLink>
             )}
