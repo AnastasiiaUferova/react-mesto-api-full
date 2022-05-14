@@ -145,7 +145,7 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, 'super-secret-strong-web-code', { expiresIn: '7d' });
       localStorage.setItem('jwt', token)
       return res
-        .send({ message: 'Пользователь успешно залогирован' });
+        .send({ data: token });
     })
     .catch(next);
 };

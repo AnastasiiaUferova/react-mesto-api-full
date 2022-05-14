@@ -13,6 +13,7 @@ class Api {
     getCards() {
         return fetch(`${this._address}/cards`, {
             method: "GET",
+            'credentials': 'include',
             headers: {
                 Accept: 'application/json',
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -25,6 +26,7 @@ class Api {
     addCard(data) {
         return fetch(this._address + "/cards", {
             method: "POST",
+            'credentials': 'include',
             headers: {
                 Accept: 'application/json',
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -41,6 +43,7 @@ class Api {
     getUserInfo () {
         return fetch(`${this._address}/users/me`, {
             method: "GET",
+            'credentials': 'include',
             headers: {
                 Accept: 'application/json',
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -53,6 +56,7 @@ class Api {
     changeUserInfo (data) {
         return fetch(`${this._address}/users/me`, {
         method: "PATCH",
+        'credentials': 'include',
         headers: {
             Accept: 'application/json',
             authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -70,6 +74,7 @@ class Api {
     deleteCard(cardId) {
         return fetch (`${this._address}/cards/${cardId}`, {
         method: "DELETE",
+        'credentials': 'include',
         headers: {
             authorization: `Bearer ${localStorage.getItem('jwt')}`,
         }}).then(this._handleResponse);
@@ -78,6 +83,7 @@ class Api {
     changeAvatar(data) {
         return fetch(`${this._address}/users/me/avatar`, {
         method: "PATCH",
+        'credentials': 'include',
         headers: {
             Accept: 'application/json',
             authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -95,6 +101,7 @@ class Api {
     changeLikeCardStatus(id, isLiked) {
         return fetch(`${this._address}/cards/likes/${id}`, {
           method: isLiked ? 'DELETE' : 'PUT',
+          'credentials': 'include',
           headers: {
             Accept: 'application/json',
             authorization: `Bearer ${localStorage.getItem('jwt')}`,

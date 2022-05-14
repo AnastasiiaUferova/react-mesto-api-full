@@ -195,9 +195,9 @@ function App() {
             })
             .catch((err) => {
                 if (err === 400)
-                  return console.log("Токен не передан или передан не в том формате");
+                return console.log("Токен не передан или передан не в том формате");
                 if (err === 401) return console.log("Переданный токен некорректен");
-              });
+            });
         }
     }
 
