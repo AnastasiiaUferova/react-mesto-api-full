@@ -9,9 +9,6 @@ const NotFoundError = require('./errors/not-found-404');
 const { createUser, login } = require('./controllers/users');
 const { errorHandler } = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cookies = require('js-cookie-remove-all');
-
-cookies.removeAll(attributes);
 
 const { PORT = 3000 } = process.env;
 
@@ -25,36 +22,7 @@ app.use(helmet());
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
-const allowedCors = [
-  'https://mesto-front.u.nomoredomains.xyz/',
-  'http://mesto-front.u.nomoredomains.xyz/'
-];
-
-app.use((req, res, next) => {
-  const { origin } = req.headers; 
-  if (allowedCors.includes(origin)); {
-      res.header('Access-Control-Allow-Origin', origin);
-      res.header('Access-Control-Allow-Credentials', true)
-  }
-
-  const { method } = req; 
-  const requestHeaders = req.headers['access-control-request-headers'];
-  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE"; 
-  if (method === 'OPTIONS') {
-  res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-  res.header('Access-Control-Allow-Headers', requestHeaders);
-  return res.end();
-} 
-  next();
-})
-
 app.use(requestLogger);
-
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({

@@ -9,10 +9,8 @@ module.exports = (req, res, next) => {
   const token = authorization.replace('Bearer ', '');
   let payload;
   try {
-
     payload = jwt.verify(token, 'super-secret-strong-web-code');
   } catch (err) {
-    
     throw new UnauthorizedError('Необходима авторизация');
   }
 
@@ -20,4 +18,3 @@ module.exports = (req, res, next) => {
 
   return next();
 };
-

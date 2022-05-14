@@ -143,9 +143,9 @@ module.exports.login = (req, res, next) => {
         next(new UnauthorizedError('Ошибка авторизации'));
       }
       const token = jwt.sign({ _id: user._id }, 'super-secret-strong-web-code', { expiresIn: '7d' });
-      localStorage.setItem('jwt', token)
+      // localStorage.setItem('jwt', token);
       return res
-        .send({ data: token });
+        .send({ token });
     })
     .catch(next);
 };
