@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
+const cors = require('./middlewares/cors')
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -14,6 +15,7 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
+app.use(cors);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
