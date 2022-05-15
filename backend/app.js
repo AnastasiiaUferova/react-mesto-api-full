@@ -21,11 +21,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 
-mongoose.connect('mongodb://localhost:27017/mestodb');
-
 const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
+  'localhost:3000',
   'https://mesto-front.u.nomoredomains.xyz/',
   'http://mesto-front.u.nomoredomains.xyz/',
   'http://localhost:3000',
@@ -44,6 +43,7 @@ app.use((req, res, next) => {
   const { method } = req;
   const requestHeaders = req.headers['access-control-request-headers'];
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
@@ -51,6 +51,8 @@ app.use((req, res, next) => {
   }
   return next();
 });
+
+mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(requestLogger);
 
