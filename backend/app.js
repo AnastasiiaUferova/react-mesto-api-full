@@ -24,9 +24,14 @@ app.use(helmet());
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
 const allowedCors = [
+  'https://praktikum.tk',
+  'http://praktikum.tk',
   'https://mesto-front.u.nomoredomains.xyz/',
   'http://mesto-front.u.nomoredomains.xyz/',
   'http://localhost:3000',
+  'https://localhost:3000',
+  'http://mesto-back.u.nomoredomains.xyz',
+  'https://mesto-back.u.nomoredomains.xyz',
 ];
 
 app.use((req, res, next) => {
