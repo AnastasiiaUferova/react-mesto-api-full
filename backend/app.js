@@ -1,10 +1,10 @@
 const bodyParser = require('body-parser');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
-const cors = require('./middlewares/cors')
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const NotFoundError = require('./errors/not-found-404');
 const { createUser, login } = require('./controllers/users');
@@ -15,7 +15,6 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -23,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
+
+app.use(cors);
 
 app.use(requestLogger);
 
