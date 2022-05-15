@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 
-/* const allowedCors = [
+const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
   'localhost:3000',
@@ -31,12 +31,12 @@ app.use(helmet());
   'https://localhost:3000',
   'http://mesto-back.u.nomoredomains.xyz',
   'https://mesto-back.u.nomoredomains.xyz',
-]; */
+];
 
 app.use((req, res, next) => {
   const { origin } = req.headers;
   if (origin === 'https://mesto-front.u.nomoredomains.xyz/') {
-    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Origin', allowedCors);
     res.header('Access-Control-Allow-Credentials', true);
   }
 
