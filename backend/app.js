@@ -1,5 +1,4 @@
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 const express = require('express');
@@ -18,8 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(helmet());
+
 
 const allowedCors = [
   'https://praktikum.tk',
@@ -33,6 +31,7 @@ const allowedCors = [
   'https://mesto-back.u.nomoredomains.xyz',
   'https://mesto-back.u.nomoredomains.xyz/'
 ];
+
 
 app.use((req, res, next) => {
   const { origin } = req.headers;
@@ -53,6 +52,7 @@ app.use((req, res, next) => {
   return next();
 });
 
+app.use(helmet());
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
 
@@ -85,6 +85,12 @@ app.get('/signout', (req, res) => {
 app.use('*', () => {
   throw new NotFoundError('Ресурс не найден');
 });
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+})
 
 app.use(errors());
 
