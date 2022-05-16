@@ -12,12 +12,12 @@ function Header(props) {
             <img className="header__logo" src={logo} alt="логотип Mesto" />
 
             {location.pathname === "/signup" && (
-                <NavLink to="/sign-in" className="header__info">
+                <NavLink to="/signin" className="header__info">
                     Войти
                 </NavLink>
             )}
             {location.pathname === "/signin" && (
-                <NavLink to="/sign-up" className="header__info">
+                <NavLink to="/signup" className="header__info">
                     Регистрация
                 </NavLink>
             )}

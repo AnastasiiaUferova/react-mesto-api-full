@@ -31,6 +31,7 @@ const allowedCors = [
   'https://localhost:3000',
   'http://mesto-back.u.nomoredomains.xyz',
   'https://mesto-back.u.nomoredomains.xyz',
+  'https://mesto-back.u.nomoredomains.xyz/'
 ];
 
 app.use((req, res, next) => {

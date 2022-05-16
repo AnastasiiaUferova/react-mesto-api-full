@@ -85,7 +85,7 @@ class Api {
 
 
 const api = new Api({
-    address: "https://https://mesto-back.u.nomoredomains.xyz",
+    address: 'https://mesto-back.u.nomoredomains.xyz',
     headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
