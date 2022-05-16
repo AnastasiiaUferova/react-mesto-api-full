@@ -1,15 +1,14 @@
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-// const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const NotFoundError = require('./errors/not-found-404');
 const { createUser, login } = require('./controllers/users');
 const { errorHandler } = require('./middlewares/errorHandler');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 
@@ -19,7 +18,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(helmet());
+
+mongoose.connect('mongodb://localhost:27017/mestodb');
 
 const allowedCors = [
   'https://praktikum.tk',
@@ -35,7 +37,7 @@ const allowedCors = [
 
 app.use((req, res, next) => {
   const { origin } = req.headers;
-  if (origin === 'https://mesto-front.u.nomoredomains.xyz/') {
+  if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', allowedCors);
     res.header('Access-Control-Allow-Credentials', true);
   }
@@ -51,10 +53,6 @@ app.use((req, res, next) => {
   }
   return next();
 });
-
-mongoose.connect('mongodb://localhost:27017/mestodb');
-
-app.use(requestLogger);
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -85,8 +83,6 @@ app.get('/signout', (req, res) => {
 app.use('*', () => {
   throw new NotFoundError('Ресурс не найден');
 });
-
-app.use(errorLogger);
 
 app.use(errors());
 
