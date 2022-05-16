@@ -153,7 +153,7 @@ function App() {
                 setImageTooltip(tick);
                 setTextTooltip("Вы успешно зарегистрировались!");
                 setIsTooltipPopupOpen(true);
-                history.push("/sign-in");
+                history.push("/signin");
             })
             .catch(() => {
                 setImageTooltip(cross);
@@ -199,7 +199,7 @@ function App() {
 
     function handleSignOut() {
         localStorage.removeItem("jwt");
-        history.push("/sign-up");
+        history.push("/signup");
         setLoggedIn(false);
     }
 
@@ -222,10 +222,10 @@ function App() {
                         onCardLike={handleCardLike}
                         cards={cards}
                     />
-                    <Route path="/sign-up">
+                    <Route path="/signup">
                         <Register handleRegister={handleRegister} />
                     </Route>
-                    <Route path="/sign-in">
+                    <Route path="/signin">
                         <Login handleLogin={handleLogin} />
                     </Route>
                 </Switch>
