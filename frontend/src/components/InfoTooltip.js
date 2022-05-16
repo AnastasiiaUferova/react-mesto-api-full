@@ -1,4 +1,7 @@
 import React from 'react' 
+import tick from '../images/Tick.svg'
+import cross from '../images/Cross.svg'
+
 
 function InfoTooltip({isOpen, onClose, text, image}) { 
 

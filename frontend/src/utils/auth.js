@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://mesto-back.u.nomoredomains.xyz';
+export const BASE_URL = 'https://mesto-back.u.nomoredomains.xyz ';
 
 
 const checkResponse = (response) => {
@@ -36,23 +36,15 @@ const checkResponse = (response) => {
   }; 
 
   
-  export const getContent = () => {
+  export const getContent = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-      },
-      credentials: 'include',
+        'Authorization': `Bearer ${token}`,
+      }
     })
     .then(res => res.json())
     .then(data => data)
   } 
-
-
-  export const signOut = () => {
-    return fetch(`${BASE_URL}/signout`, {
-        method: "DELETE",
-        credentials: "include",
-    }).then((res) => handleResponse(res));
-  };

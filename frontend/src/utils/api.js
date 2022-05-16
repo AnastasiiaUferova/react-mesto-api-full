@@ -1,6 +1,7 @@
 class Api {
-    constructor({ address }) {
+    constructor({ address, headers }) {
         this._address = address;
+        this._headers = headers;
     }
 
     _handleResponse = (response) => {
@@ -13,9 +14,7 @@ class Api {
     getCards() {
         return fetch(`${this._address}/cards`, {
             method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: this._headers,
         })
             .then(this._handleResponse);
     }
@@ -23,10 +22,7 @@ class Api {
     addCard(data) {
         return fetch(this._address + "/cards", {
             method: "POST",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -38,10 +34,7 @@ class Api {
     getUserInfo () {
         return fetch(`${this._address}/users/me`, {
             method: "GET",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
+            headers: this._headers,
         })
         .then(this._handleResponse);
     }
@@ -49,10 +42,7 @@ class Api {
     changeUserInfo (data) {
         return fetch(`${this._address}/users/me`, {
         method: "PATCH",
-        headers: {
-            Accept: 'application/json',
-            "Content-Type": "application/json",
-        },
+        headers: this._headers,
         body: JSON.stringify({
             name: data.name,
             about: data.about,
@@ -62,22 +52,18 @@ class Api {
     
     }
 
+
     deleteCard(cardId) {
         return fetch (`${this._address}/cards/${cardId}`, {
         method: "DELETE",
-        headers: {
-            authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        }}).then(this._handleResponse);
+        headers:this._headers})
+        .then(this._handleResponse);
     }
 
     changeAvatar(data) {
         return fetch(`${this._address}/users/me/avatar`, {
         method: "PATCH",
-        headers: {
-            Accept: 'application/json',
-            authorization: `Bearer ${localStorage.getItem('jwt')}`,
-            "Content-Type": "application/json",
-        },
+        headers: this._headers,
         body: JSON.stringify({
             avatar: data.avatar
         })
@@ -89,21 +75,21 @@ class Api {
 
     changeLikeCardStatus(id, isLiked) {
         return fetch(`${this._address}/cards/likes/${id}`, {
-        method: isLiked ? 'DELETE' : 'PUT',
-        headers: {
-            Accept: 'application/json',
-            authorization: `Bearer ${localStorage.getItem('jwt')}`,
-            "Content-Type": "application/json",
-        },
+          method: isLiked ? 'DELETE' : 'PUT',
+          headers: this._headers,
         })
-        .then(this._handleResponse)
+          .then(this._handleResponse)
+      }
     }
 
-    }
 
 
 const api = new Api({
-    address: "https://mesto-back.u.nomoredomains.xyz/",
+    address: "https://https://mesto-back.u.nomoredomains.xyz",
+    headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+    },
 });
 
 export default api

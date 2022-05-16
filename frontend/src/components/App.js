@@ -153,7 +153,7 @@ function App() {
                 setImageTooltip(tick);
                 setTextTooltip("Вы успешно зарегистрировались!");
                 setIsTooltipPopupOpen(true);
-                history.push("/signin");
+                history.push("/sign-in");
             })
             .catch(() => {
                 setImageTooltip(cross);
@@ -164,7 +164,8 @@ function App() {
 
     function handleLogin(password, email) {
         return auth.authorize(password, email).then((data) => {
-            if (data){
+            if (data.token) {
+                localStorage.setItem("jwt", data.token);
                 setUserData({ email: email });
                 setLoggedIn(true);
                 history.push("/");
@@ -178,32 +179,29 @@ function App() {
         
     }
 
+
     function tokenCheck() {
-            auth.getContent().then((data) => {
+        // если у пользователя есть токен в localStorage,
+        // эта функция проверит валидность токена
+        const jwt = localStorage.getItem("jwt");
+        if (jwt) {
+            // проверим токен
+            auth.getContent(jwt).then((data) => {
+                if (data) {
+                    // здесь можем получить данные пользователя!
                     setUserData({ email: data.data.email });
                     setLoggedIn(true);
                     history.push("/");
-            })
-            .catch((err) => {
-                if (err === 400)
-                return console.log("Токен не передан или передан не в том формате");
-                if (err === 401) return console.log("Переданный токен некорректен");
+                }
             });
+        }
     }
 
-    const handleSignOut = () => {
-        auth
-          .signOut()
-          .then(() => {
-            setLoggedIn(false);
-            setUserData("");
-            history.push("/sign-in");
-          })
-          .catch((err) => {
-            console.log("Ошибка при выходе");
-          })
-      }
-
+    function handleSignOut() {
+        localStorage.removeItem("jwt");
+        history.push("/sign-up");
+        setLoggedIn(false);
+    }
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
@@ -224,10 +222,10 @@ function App() {
                         onCardLike={handleCardLike}
                         cards={cards}
                     />
-                    <Route path="/signup">
+                    <Route path="/sign-up">
                         <Register handleRegister={handleRegister} />
                     </Route>
-                    <Route path="/signin">
+                    <Route path="/sign-in">
                         <Login handleLogin={handleLogin} />
                     </Route>
                 </Switch>

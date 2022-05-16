@@ -41,7 +41,7 @@ const Register = ({ handleRegister }) =>  {
                 <button className="sign-up__save-button" type="submit">Зарегистрироваться</button>
             </form>
             <div className="sign-up__subtitle-container">
-                <p className="sign-up__subtitle">Уже зарегистрированы? <Link to="/signin" className="sign-up__link"href="#">Войти</Link></p>
+                <p className="sign-up__subtitle">Уже зарегистрированы? <Link to="/sign-in" className="sign-up__link"href="#">Войти</Link></p>
             </div>
         </div>
     </div>
