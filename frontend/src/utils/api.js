@@ -14,10 +14,9 @@ class Api {
         return fetch(`${this._address}/cards`, {
             method: "GET",
             headers: {
-                Accept: 'application/json',
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
+            credentials: "include",
         })
             .then(this._handleResponse);
     }
@@ -27,9 +26,9 @@ class Api {
             method: "POST",
             headers: {
                 Accept: 'application/json',
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
+            credentials: "include",
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -43,9 +42,9 @@ class Api {
             method: "GET",
             headers: {
                 Accept: 'application/json',
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
+            credentials: "include",
         })
         .then(this._handleResponse);
     }
@@ -55,9 +54,9 @@ class Api {
         method: "PATCH",
         headers: {
             Accept: 'application/json',
-            authorization: `Bearer ${localStorage.getItem('jwt')}`,
             "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
             name: data.name,
             about: data.about,
@@ -70,6 +69,7 @@ class Api {
     deleteCard(cardId) {
         return fetch (`${this._address}/cards/${cardId}`, {
         method: "DELETE",
+        credentials: "include",
         headers: {
             authorization: `Bearer ${localStorage.getItem('jwt')}`,
         }}).then(this._handleResponse);
@@ -78,6 +78,7 @@ class Api {
     changeAvatar(data) {
         return fetch(`${this._address}/users/me/avatar`, {
         method: "PATCH",
+        credentials: "include",
         headers: {
             Accept: 'application/json',
             authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -95,6 +96,7 @@ class Api {
     changeLikeCardStatus(id, isLiked) {
         return fetch(`${this._address}/cards/likes/${id}`, {
           method: isLiked ? 'DELETE' : 'PUT',
+          credentials: "include",
           headers: {
             Accept: 'application/json',
             authorization: `Bearer ${localStorage.getItem('jwt')}`,
