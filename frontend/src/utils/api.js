@@ -14,8 +14,6 @@ class Api {
         return fetch(`${this._address}/cards`, {
             method: "GET",
             headers: {
-                Accept: 'application/json',
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
         })
@@ -27,7 +25,6 @@ class Api {
             method: "POST",
             headers: {
                 Accept: 'application/json',
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -43,7 +40,6 @@ class Api {
             method: "GET",
             headers: {
                 Accept: 'application/json',
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
         })
@@ -55,7 +51,6 @@ class Api {
         method: "PATCH",
         headers: {
             Accept: 'application/json',
-            authorization: `Bearer ${localStorage.getItem('jwt')}`,
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -94,15 +89,15 @@ class Api {
 
     changeLikeCardStatus(id, isLiked) {
         return fetch(`${this._address}/cards/likes/${id}`, {
-          method: isLiked ? 'DELETE' : 'PUT',
-          headers: {
+        method: isLiked ? 'DELETE' : 'PUT',
+        headers: {
             Accept: 'application/json',
             authorization: `Bearer ${localStorage.getItem('jwt')}`,
             "Content-Type": "application/json",
         },
         })
-          .then(this._handleResponse)
-      }
+        .then(this._handleResponse)
+    }
 
     }
 

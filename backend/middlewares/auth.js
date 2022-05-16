@@ -6,15 +6,16 @@ module.exports = (req, res, next) => {
   if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new UnauthorizedError('Необходима авторизация1');
   }
-  const token = authorization.replace('Bearer ', '');
+  const token = req.cookies.jwt;
   let payload;
   try {
+    // попытаемся верифицировать токен
     payload = jwt.verify(token, 'super-secret-strong-web-code');
   } catch (err) {
     throw new UnauthorizedError('Необходима авторизация2');
   }
 
-  req.user = payload;
+  req.user = payload; // записываем пейлоуд в объект запроса
 
   return next();
 };

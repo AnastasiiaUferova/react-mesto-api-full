@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/AnastasiiaUferova/express-mesto-gha#readme",
   "devDependencies": {
-    "eslint": "^8.15.0",
+    "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "nodemon": "^2.0.15"
@@ -33,13 +33,11 @@
     "config": "3.3.1",
     "cookie-parser": "^1.4.6",
     "express": "^4.17.3",
-    "express-winston": "^4.2.0",
     "helmet": "^5.0.2",
     "isurl": "^4.0.2",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.10",
-    "validator": "^13.7.0",
-    "winston": "^3.7.2"
+    "validator": "^13.7.0"
   }
 }
