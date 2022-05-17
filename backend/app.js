@@ -36,6 +36,10 @@ const corsOptions = {
 };
 app.use('*', cors(corsOptions));
 
+helmet({
+  crossOriginResourcePolicy: false,
+})
+
 app.use(helmet());
 mongoose.connect('mongodb://localhost:27017/mestodb');
 

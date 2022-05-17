@@ -14,6 +14,7 @@ class Api {
     getCards() {
         return fetch(`${this._address}/cards`, {
             method: "GET",
+            mode: 'no-cors',
             headers: this._headers,
         })
             .then(this._handleResponse);
@@ -23,6 +24,7 @@ class Api {
         return fetch(this._address + "/cards", {
             method: "POST",
             headers: this._headers,
+            mode: 'no-cors',
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -35,6 +37,7 @@ class Api {
         return fetch(`${this._address}/users/me`, {
             method: "GET",
             headers: this._headers,
+            mode: 'no-cors',
         })
         .then(this._handleResponse);
     }
@@ -42,6 +45,7 @@ class Api {
     changeUserInfo (data) {
         return fetch(`${this._address}/users/me`, {
         method: "PATCH",
+        mode: 'no-cors',
         headers: this._headers,
         body: JSON.stringify({
             name: data.name,
@@ -56,6 +60,7 @@ class Api {
     deleteCard(cardId) {
         return fetch (`${this._address}/cards/${cardId}`, {
         method: "DELETE",
+        mode: 'no-cors',
         headers:this._headers})
         .then(this._handleResponse);
     }
@@ -64,6 +69,7 @@ class Api {
         return fetch(`${this._address}/users/me/avatar`, {
         method: "PATCH",
         headers: this._headers,
+        mode: 'no-cors',
         body: JSON.stringify({
             avatar: data.avatar
         })
@@ -77,6 +83,7 @@ class Api {
         return fetch(`${this._address}/cards/likes/${id}`, {
           method: isLiked ? 'DELETE' : 'PUT',
           headers: this._headers,
+          mode: 'no-cors',
         })
           .then(this._handleResponse)
       }

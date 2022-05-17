@@ -9,28 +9,30 @@ const checkResponse = (response) => {
 }
 
 
-  export const register = (password, email) => {
+  export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({password, email})
+      mode: 'no-cors',
+      body: JSON.stringify({email, password})
     })
     .then(checkResponse)
   };
 
 
 
-  export const authorize = (password, email) => {
+  export const authorize = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({password, email})
+      mode: 'no-cors',
+      body: JSON.stringify({email, password})
     })
     .then(checkResponse)
   }; 
@@ -39,6 +41,7 @@ const checkResponse = (response) => {
   export const getContent = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
       method: 'GET',
+      mode: 'no-cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
