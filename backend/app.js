@@ -20,8 +20,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-const allowedCors = [
-  'https://praktikum.tk',
+const corsOptions = {
+  origin: ['https://praktikum.tk',
   'http://praktikum.tk',
   'localhost:3000',
   'https://mesto-front.u.nomoredomains.xyz/',
@@ -31,12 +31,7 @@ const allowedCors = [
   'https://localhost:3000',
   'http://mesto-back.u.nomoredomains.xyz',
   'https://mesto-back.u.nomoredomains.xyz',
-  'https://mesto-back.u.nomoredomains.xyz/'
-];
-
-
-const corsOptions = {
-  origin: allowedCors,
+  'https://mesto-back.u.nomoredomains.xyz/'],
   credentials: true,
 };
 app.use('*', cors(corsOptions));
