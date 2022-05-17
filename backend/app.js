@@ -51,10 +51,6 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.use((req, res, next) => {
-  res.header(res.header('X-Content-Type-Options', nosniff))
-  return next();
-})
 
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
