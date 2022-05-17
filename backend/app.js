@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const { celebrate, Joi } = require('celebrate');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -25,6 +26,7 @@ const allowedCors = [
   'localhost:3000',
   'https://mesto-front.u.nomoredomains.xyz/',
   'http://mesto-front.u.nomoredomains.xyz/',
+  'https://mesto-front.u.nomoredomains.xyz/',
   'http://localhost:3000',
   'https://localhost:3000',
   'http://mesto-back.u.nomoredomains.xyz',
@@ -33,24 +35,11 @@ const allowedCors = [
 ];
 
 
-app.use((req, res, next) => {
-  const { origin } = req.headers;
-  if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', allowedCors);
-    res.header('Access-Control-Allow-Credentials', true);
-  }
-
-  const { method } = req;
-  const requestHeaders = req.headers['access-control-request-headers'];
-  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
-
-  if (method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-    res.header('Access-Control-Allow-Headers', requestHeaders);
-    return res.end();
-  }
-  return next();
-});
+const corsOptions = {
+  origin: allowedCors,
+  credentials: true,
+};
+app.use('*', cors(corsOptions));
 
 app.use(helmet());
 mongoose.connect('mongodb://localhost:27017/mestodb');
