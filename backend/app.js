@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const { celebrate, Joi } = require('celebrate');
-const cors = require('cors');
+// const cors = require('cors');
 const { errors } = require('celebrate');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -20,8 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-const corsOptions = {
-  origin: ['https://praktikum.tk',
+const allowedCors =  ['https://praktikum.tk',
   'http://praktikum.tk',
   'localhost:3000',
   'https://mesto-front.u.nomoredomains.xyz/',
@@ -31,16 +30,30 @@ const corsOptions = {
   'https://localhost:3000',
   'http://mesto-back.u.nomoredomains.xyz',
   'https://mesto-back.u.nomoredomains.xyz',
-  'https://mesto-back.u.nomoredomains.xyz/'],
-  credentials: true,
-};
-app.use('*', cors(corsOptions));
+  'https://mesto-back.u.nomoredomains.xyz/']
 
-helmet({
-  crossOriginResourcePolicy: false,
-})
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', allowedCors);
+    res.header('Access-Control-Allow-Credentials', true);
+  }
 
-app.use(helmet());
+  const { method } = req;
+  const requestHeaders = req.headers['access-control-request-headers'];
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    return res.end();
+  }
+  return next();
+});
+
+
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
 
