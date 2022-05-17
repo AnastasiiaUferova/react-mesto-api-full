@@ -6,7 +6,6 @@ const Register = ({ handleRegister }) =>  {
     const [data, setData] = useState({
       email: '',
       password: '',
-      message: ''
     })
     
     const {email, password} = data;

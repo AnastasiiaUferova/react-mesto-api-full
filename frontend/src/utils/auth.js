@@ -17,7 +17,7 @@ const checkResponse = (response) => {
         'Content-Type': 'application/json'
       },
       mode: 'no-cors',
-      body: JSON.stringify({password: password, email: email})
+      body: JSON.stringify({password, email})
     })
     .then(checkResponse)
   };
@@ -32,7 +32,7 @@ const checkResponse = (response) => {
         'Content-Type': 'application/json'
       },
       mode: 'no-cors',
-      body: JSON.stringify({password: password, email: email})
+      body: JSON.stringify({password, email})
     })
     .then(checkResponse)
   }; 
