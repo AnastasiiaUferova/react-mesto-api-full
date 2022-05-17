@@ -64,7 +64,7 @@ exports.createUser = (req, res, next) => {
     }))
     .then((user) => {res.status(201).send({
       data: {
-        email: user.email, _id: user.id,
+        name: user.name, about: user.about, avatar: user.avatar, email: user.email, _id: user.id,
       },
     })
     console.log(user)

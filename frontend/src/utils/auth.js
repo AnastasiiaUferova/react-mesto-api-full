@@ -13,8 +13,8 @@ const checkResponse = (response) => {
     return fetch(`${BASE_URL}/signup`, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       mode: 'no-cors',
       body: JSON.stringify({password, email})
@@ -28,8 +28,8 @@ const checkResponse = (response) => {
     return fetch(`${BASE_URL}/signin`, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       mode: 'no-cors',
       body: JSON.stringify({password, email})
@@ -43,8 +43,8 @@ const checkResponse = (response) => {
       method: 'GET',
       mode: 'no-cors',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
         'Authorization': `Bearer ${token}`,
       }
     })
