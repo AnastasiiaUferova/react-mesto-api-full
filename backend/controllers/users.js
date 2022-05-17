@@ -62,11 +62,14 @@ exports.createUser = (req, res, next) => {
       email,
       password: hash,
     }))
-    .then((user) => res.status(201).send({
+    .then((user) => {res.status(201).send({
       data: {
         name: user.name, about: user.about, avatar: user.avatar, email: user.email, _id: user.id,
       },
-    }))
+    })
+    console.log(user)
+  },
+    )
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные при создании пользователя.'));
