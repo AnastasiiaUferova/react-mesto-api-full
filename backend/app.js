@@ -37,7 +37,6 @@ app.use((req, res, next) => {
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', allowedCors);
     res.header('Access-Control-Allow-Credentials', true);
-    res.header('X-Content-Type-Options', nosniff)
   }
 
   const { method } = req;
@@ -52,6 +51,10 @@ app.use((req, res, next) => {
   return next();
 });
 
+app.use((req, res, next) => {
+  res.header(res.header('X-Content-Type-Options', nosniff))
+  return next();
+})
 
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 

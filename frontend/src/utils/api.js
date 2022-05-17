@@ -96,6 +96,7 @@ const api = new Api({
     headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
+        'Accept': 'application/json'
     },
 });
 
