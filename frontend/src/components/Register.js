@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const Register = ({ handleRegister }) =>  {
     
     const [data, setData] = useState({
-      password: '',
       email: '',
+      password: '',
       message: ''
     })
     

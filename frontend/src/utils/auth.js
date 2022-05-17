@@ -9,7 +9,7 @@ const checkResponse = (response) => {
 }
 
 
-  export const register = (email, password) => {
+  export const register = (password, email) => {
     return fetch(`${BASE_URL}/signup`, {
       method: 'POST',
       headers: {
@@ -17,14 +17,14 @@ const checkResponse = (response) => {
         'Content-Type': 'application/json'
       },
       mode: 'no-cors',
-      body: JSON.stringify({email, password})
+      body: JSON.stringify({password, email})
     })
     .then(checkResponse)
   };
 
 
 
-  export const authorize = (email, password) => {
+  export const authorize = (password, email) => {
     return fetch(`${BASE_URL}/signin`, {
       method: 'POST',
       headers: {
@@ -32,7 +32,7 @@ const checkResponse = (response) => {
         'Content-Type': 'application/json'
       },
       mode: 'no-cors',
-      body: JSON.stringify({email, password})
+      body: JSON.stringify({password, email})
     })
     .then(checkResponse)
   }; 

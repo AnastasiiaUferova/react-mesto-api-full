@@ -144,10 +144,6 @@ module.exports.login = (req, res, next) => {
       }
       const token = jwt.sign({ _id: user._id }, 'super-secret-strong-web-code', { expiresIn: '7d' });
       return res
-        .cookie('jwt', token, {
-          maxAge: 3600000,
-          httpOnly: true,
-        })
         .send({ token });
     })
     .catch(next);
