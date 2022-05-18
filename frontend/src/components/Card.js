@@ -8,9 +8,10 @@ function Card({card, onCardClick, onCardLike, openPopupDelete}) {
 
     const cardDeleteButtonClassName = `photo-grid__delete-button ${isOwn ? "photo-grid__delete-button-enable" : "photo-grid__delete-button-remove"}`;
 
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    console.log(card)
-    const cardLikeButtonClassName = `${isLiked ? " photo-grid__like photo-grid__like_active" : "photo-grid__like"}`;
+    const isLiked = card.likes.some((i) => i === currentUser._id);
+
+
+    const cardLikeButtonClassName = `${isLiked ? "photo-grid__like photo-grid__like_active" : "photo-grid__like"}`;
 
     function handleClick() {
         onCardClick(card);

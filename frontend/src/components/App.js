@@ -50,7 +50,7 @@ function App() {
         Promise.all([api.getUserInfo(), api.getCards()])
             .then(([userData, cards]) => {
                 setCurrentUser(userData);
-                setCards([cards]);
+                setCards(cards);
             })
             .catch((err) => {
                 console.log(err);
@@ -189,7 +189,7 @@ function App() {
             auth.getContent(jwt).then((data) => {
                 if (data) {
                     // здесь можем получить данные пользователя!
-                    setUserData({ email: data.data.email });
+                    setUserData({ email: data.email });
                     setLoggedIn(true);
                     history.push("/");
                 }
