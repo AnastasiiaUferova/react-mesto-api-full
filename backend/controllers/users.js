@@ -8,7 +8,7 @@ const ConflictError = require('../errors/conflict-409');
 
 module.exports.getAllUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({ users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
@@ -18,7 +18,7 @@ module.exports.getCurrentUser = (req, res, next) => {
       if (!data) {
         next(new NotFoundError('Пользователь по указанному _id не найден.'));
       }
-      res.send({ data });
+      res.send(data);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -35,7 +35,7 @@ module.exports.getUserById = (req, res, next) => {
       if (user === null) {
         next(new NotFoundError('Пользователь по указанному _id не найден.'));
       }
-      res.send({ user });
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -95,7 +95,7 @@ module.exports.changeUserInfo = (req, res, next) => {
   )
     .then((user) => {
       if (user) {
-        res.send({ user });
+        res.send(user);
       }
       if (!user) {
         next(new NotFoundError('Пользователь с указанным _id не найден.'));
@@ -123,7 +123,7 @@ module.exports.changeUserAvatar = (req, res, next) => {
   )
     .then((user) => {
       if (user) {
-        res.send({ user });
+        res.send(user);
       }
       if (!user) {
         next(new NotFoundError('Пользователь с указанным _id не найден.'));

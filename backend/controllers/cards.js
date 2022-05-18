@@ -5,7 +5,7 @@ const ForbiddenError = require('../errors/forbidden-403');
 
 module.exports.getAllCards = (req, res, next) => {
   Card.find({})
-    .then((card) => res.send({ card }))
+    .then((card) => res.send(card))
     .catch(next);
 };
 
@@ -13,7 +13,7 @@ module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
     .then((card) => {
-      res.send({ card });
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -55,7 +55,7 @@ module.exports.likeCard = (req, res, next) => {
       if (card === null) {
         next(new NotFoundError('Передан несуществующий _id карточки.'));
       }
-      res.send({ card });
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -76,7 +76,7 @@ module.exports.dislikeCard = (req, res, next) => {
       if (card === null) {
         next(new NotFoundError('Передан несуществующий _id карточки.'));
       }
-      res.send({ card });
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
