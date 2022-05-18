@@ -23,13 +23,13 @@ function Main(props) {
             </section>
             <ul className="photo-grid root__photo-grid">
                 {props.cards.map((card) => (
-                    <Card key={card._id} card={card} onCardClick={props.onCardClick} onCardLike={props.onCardLike} openPopupDelete={props.openPopupDelete} />
+                    <Card key={card._id} card={card} onCardClick={props.onCardClick} onCardLike={props.onCardLike} openPopupDelete={props.openPopupDelete}/>
                 ))}
+
             </ul>
         </main>
-
-            
-    );
+)
 }
 
 export default Main;
+
