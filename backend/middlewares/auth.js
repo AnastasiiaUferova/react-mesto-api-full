@@ -12,6 +12,7 @@ module.exports = (req, res, next) => {
     // попытаемся верифицировать токен
     payload = jwt.verify(token, 'super-secret-strong-web-code');
   } catch (err) {
+    console.log(jwt)
     throw new UnauthorizedError('Необходима авторизация2');
   }
 

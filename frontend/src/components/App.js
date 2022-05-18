@@ -146,9 +146,9 @@ function App() {
             });
     }
 
-    function handleRegister(email, password) {
+    function handleRegister(password, email) {
         return auth
-            .register(email, password)
+            .register(password, email)
             .then(() => {
                 setImageTooltip(tick);
                 setTextTooltip("Вы успешно зарегистрировались!");
@@ -162,8 +162,8 @@ function App() {
             });
     }
 
-    function handleLogin(email, password) {
-        return auth.authorize(email, password).then((data) => {
+    function handleLogin(password, email) {
+        return auth.authorize(password, email).then((data) => {
             if (data.token) {
                 localStorage.setItem("jwt", data.token);
                 setUserData({ email: email });
