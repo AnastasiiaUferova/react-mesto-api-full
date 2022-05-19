@@ -9,5 +9,7 @@
 Используемые технологии
 JSX, CSS, JavaScript, React (функциональыне компоненты, хуки (Resct.UseState, React.UseEffect)), mongodb, Node.js, express
 
-Ссылка на проект: 
+Ссылка на проект: https://mesto-front.u.nomoredomains.xyz/ 
+Ссылка на api: http://mesto-back.u.nomoredomains.xyz/
+IP-адрес сервера: 51.250.7.146
 
