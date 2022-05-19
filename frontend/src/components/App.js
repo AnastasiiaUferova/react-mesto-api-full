@@ -6,6 +6,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import PopupConfirm from "./PopupConfirm";
+import { setToken, removeToken } from "../utils/token"
 import { useState, useEffect } from "react";
 import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -35,6 +36,7 @@ function App() {
     const [imageTooltip, setImageTooltip] = useState('');
     const [textTooltip, setTextTooltip] = useState('');
 
+
     useEffect(() => {
         tokenCheck();
     }, []);
@@ -46,7 +48,7 @@ function App() {
     }, [loggedIn, history]);
 
     useEffect(() => {
-        if (loggedIn===true) {
+        if(loggedIn===true) {
         Promise.all([api.getUserInfo(), api.getCards()])
             .then(([userData, cards]) => {
                 setCurrentUser(userData);
@@ -55,8 +57,8 @@ function App() {
             .catch((err) => {
                 console.log(err);
             });
-        }
-    }, [loggedIn]);
+    }
+}, [loggedIn]);
 
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true);
@@ -165,9 +167,10 @@ function App() {
     function handleLogin(password, email) {
         return auth.authorize(password, email).then((data) => {
             if (data.token) {
-                localStorage.setItem("jwt", data.token);
-                setUserData({ email: email });
+                setToken(data.token);
                 setLoggedIn(true);
+                console.log(data.token)
+                setUserData({ email: email });
                 history.push("/");
             }
         })
@@ -197,8 +200,9 @@ function App() {
         }
     }
 
+
     function handleSignOut() {
-        localStorage.removeItem("jwt");
+        removeToken("jwt");
         history.push("/signup");
         setLoggedIn(false);
     }
