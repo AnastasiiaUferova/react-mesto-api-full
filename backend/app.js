@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const { celebrate, Joi } = require('celebrate');
-// const cors = require('cors');
+require('dotenv').config();
 const { errors } = require('celebrate');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -11,6 +11,7 @@ const { createUser, login } = require('./controllers/users');
 const { errorHandler } = require('./middlewares/errorHandler');
 
 const { PORT = 3000 } = process.env;
+console.log(process.env.NODE_ENV);
 
 const app = express();
 
