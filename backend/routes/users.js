@@ -4,7 +4,7 @@ const {
   getUserById, getAllUsers, changeUserInfo, changeUserAvatar, getCurrentUser,
 } = require('../controllers/users');
 
-const { linkPattern } = require('../utils/constants');
+const linkPattern = require('../utils/constants');
 
 router.get('/', getAllUsers);
 
