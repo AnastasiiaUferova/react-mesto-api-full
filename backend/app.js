@@ -11,7 +11,6 @@ const { createUser, login } = require('./controllers/users');
 const { errorHandler } = require('./middlewares/errorHandler');
 
 const { PORT = 3000 } = process.env;
-console.log(process.env.NODE_ENV);
 
 const app = express();
 
@@ -20,10 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 const cors = (req, res, next) => {
   const { origin } = req.headers;
-	console.log(origin)
   const { method } = req;
   const requestHeaders = req.headers['access-control-request-headers'];
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
@@ -37,13 +34,11 @@ const cors = (req, res, next) => {
   return next();
 };
 
-app.use(cors)
+app.use(cors);
 
-
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
-
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -79,7 +74,7 @@ app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
-})
+});
 
 app.use(errors());
 
