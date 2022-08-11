@@ -1,4 +1,4 @@
-### FINAL 'Mesto" VERSION: BACKEND+FRONTEND. Student project for [Yandex.Practicum](https://practicum.com)
+# FINAL 'Mesto" VERSION: BACKEND+FRONTEND. Student project for [Yandex.Practicum](https://practicum.com)
 
 ## Description
 
@@ -14,7 +14,5 @@ The application was deployed on the remote server with the domain name assigned 
 * [BACKEND repository](https://github.com/AnastasiiaUferova/express-mesto-gha)
 * [README backend](https://github.com/AnastasiiaUferova/express-mesto-gha/blob/main/README.md)
 
-
-Website domain: 
-
-Public IP of the server: 
+## Future project development
+Deploy the project at the cloud server so it'll be available together via URL.
