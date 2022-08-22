@@ -63,16 +63,16 @@ app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
 
 app.get('/signout', (req, res) => {
-  res.status(200).clearCookie('jwt').send({ message: 'Выход' });
+  res.status(200).clearCookie('jwt').send({ message: 'Signout' });
 });
 
 app.use('*', () => {
-  throw new NotFoundError('Ресурс не найден');
+  throw new NotFoundError('Source was not found');
 });
 
 app.get('/crash-test', () => {
   setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
+    throw new Error('The server is about to crash');
   }, 0);
 });
 

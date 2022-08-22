@@ -17,5 +17,3 @@ The application was deployed on the remote server with the domain name assigned 
 
 ## Future project development
 Deploy the project at the cloud server so it'll be available together via URL.
-
-
