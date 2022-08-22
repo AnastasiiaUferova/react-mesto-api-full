@@ -5,6 +5,7 @@
 The repository that unites the frontend and backend parts of the 'Mesto' ('Place') student project - a web application for sharing photos with the functionality of user registration and authetication.
 
 The application was deployed on the remote server with the domain name assigned to it.
+<<<<<<< HEAD
 
 ## Links
 
