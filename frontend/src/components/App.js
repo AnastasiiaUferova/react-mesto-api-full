@@ -109,10 +109,8 @@ function App() {
     }
 
     function handleCardLike(card) {
-        // Снова проверяем, есть ли уже лайк на этой карточке
         const isLiked = card.likes.some((i) => i === currentUser._id);
 
-        // Отправляем запрос в API и получаем обновлённые данные карточки
         return api
             .changeLikeCardStatus(card._id, isLiked)
             .then((newCard) => {
@@ -153,13 +151,13 @@ function App() {
             .register(password, email)
             .then(() => {
                 setImageTooltip(tick);
-                setTextTooltip("Вы успешно зарегистрировались!");
+                setTextTooltip("You have successfully registered!");
                 setIsTooltipPopupOpen(true);
                 history.push("/signin");
             })
             .catch(() => {
                 setImageTooltip(cross);
-                setTextTooltip("Что-то пошло не так! Попробуйте ещё раз.");
+                setTextTooltip("Something went wrong! Try again.");
                 setIsTooltipPopupOpen(true);
             });
     }
@@ -184,14 +182,10 @@ function App() {
 
 
     function tokenCheck() {
-        // если у пользователя есть токен в localStorage,
-        // эта функция проверит валидность токена
         const jwt = localStorage.getItem("jwt");
         if (jwt) {
-            // проверим токен
             auth.getContent(jwt).then((data) => {
                 if (data) {
-                    // здесь можем получить данные пользователя!
                     setUserData({ email: data.email });
                     setLoggedIn(true);
                     history.push("/");
@@ -239,7 +233,7 @@ function App() {
                 <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
                 <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
                 <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
-                <PopupConfirm name="confirm" title="Вы уверены?" card={selectedCard} isOpen={isConfirmPopupOpen} onClose={closeAllPopups} onCardDelete={handleCardDelete}></PopupConfirm>
+                <PopupConfirm name="confirm" title="Are you sure?" card={selectedCard} isOpen={isConfirmPopupOpen} onClose={closeAllPopups} onCardDelete={handleCardDelete}></PopupConfirm>
 
                 <ImagePopup name="pic" card={selectedCard} onClose={closeAllPopups} isOpen={isImagePopupOpen} />
 

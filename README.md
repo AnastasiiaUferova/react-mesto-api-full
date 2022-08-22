@@ -1,15 +1,20 @@
-# react-mesto-api-full
+# FINAL 'Mesto" VERSION: BACKEND+FRONTEND. Student project for [Yandex.Practicum](https://practicum.com)
 
-О чем проект?
-Проект о фотографиях из путешествий. Личная мини-выставка фотографий. У фотографиях есть описание, как и у самого профиля.
+## Description
 
-Функациональность
-Отркрывать картинки в большем размере.
+The repository that unites the frontend and backend parts of the 'Mesto' ('Place') student project - a web application for sharing photos with the functionality of user registration and authetication.
 
-Используемые технологии
-JSX, CSS, JavaScript, React (функциональыне компоненты, хуки (Resct.UseState, React.UseEffect)), mongodb, Node.js, express
+The application was deployed on the remote server with the domain name assigned to it.
 
-Ссылка на проект: https://mesto-front.u.nomoredomains.xyz
-Ссылка на api: https://mesto-back.u.nomoredomains.xyz
-IP-адрес сервера: 51.250.7.146
+## Links
+
+* [FRONTEND repository](https://github.com/AnastasiiaUferova/react-mesto-auth)
+* [README frontend](https://github.com/AnastasiiaUferova/react-mesto-auth/blob/main/README.md)
+
+* [BACKEND repository](https://github.com/AnastasiiaUferova/express-mesto-gha)
+* [README backend](https://github.com/AnastasiiaUferova/express-mesto-gha/blob/main/README.md)
+
+## Future project development
+Deploy the project at the cloud server so it'll be available together via URL.
+
 

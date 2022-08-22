@@ -9,23 +9,23 @@ function Header(props) {
 
     return (
         <header className="header root__header">
-            <img className="header__logo" src={logo} alt="логотип Mesto" />
+            <img className="header__logo" src={logo} alt="logo Mesto" />
 
             {location.pathname === "/signup" && (
                 <NavLink to="/signin" className="header__info">
-                    Войти
+                    Login
                 </NavLink>
             )}
             {location.pathname === "/signin" && (
                 <NavLink to="/signup" className="header__info">
-                    Регистрация
+                    Registration
                 </NavLink>
             )}
             {location.pathname === "/" && (
                 <div className="header__info-container">
                     <p className="header__email">{email}</p>
                     <button onClick={props.signOut} className="header__info header__info_sign-out">
-                        Выйти
+                        Logout
                     </button>
                 </div>
             )}

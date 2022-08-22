@@ -1,6 +1,6 @@
 import React from "react";
 
-function PopupConfirm({ name, card, title, isOpen, submitText = "Да", onClose, onCardDelete}) {
+function PopupConfirm({ name, card, title, isOpen, submitText = "Yes", onClose, onCardDelete}) {
     function onSubmit(e) {
         e.preventDefault();
         onCardDelete(card);
